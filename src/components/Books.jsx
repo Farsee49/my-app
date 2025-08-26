@@ -32,16 +32,20 @@ export default function Books() {
 
   return (
     <>
-    <Box sx={{ flexGrow: 1 }}>
+  
     <div>
       <h1>Books</h1>
     </div>
-    <div>
-      {books.map((book) => (
-        <Card sx={{ border: "1px solid #ccc", width: "600px", display: "flex", marginBottom: "16px" }} key={book.id}>
-          <CardMedia
-            component="img"
-            alt={book.title}
+   
+        <Box sx={{ flexGrow: 1 }}>
+          <Button variant="contained" href="/new-book" sx={{ mb: 2 }}>
+            Add New Book
+          </Button>
+          {books.map((book) => (
+            <Card sx={{ border: "1px solid #ccc", width: "600px", display: "flex", marginBottom: "16px" }} key={book.id}>
+              <CardMedia
+                component="img"
+                alt={book.title}
             sx={{
               borderRight: "1px solid #ccc",
               height: "fit-content",
@@ -61,8 +65,9 @@ export default function Books() {
           </CardContent>
         </Card>
       ))}
-    </div>
-    </Box>
+      </Box>
+    
+    
     </>
   );
 };

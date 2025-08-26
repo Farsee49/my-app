@@ -5,3 +5,4 @@ export { default as Register } from './Register';
 export { default as Login } from './Login';
 export { default as Logout } from './Logout';
 export { default as Books } from './Books';
+export { default as NewBook } from './NewBook';

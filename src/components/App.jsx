@@ -7,8 +7,9 @@ import {
   Home,
   Register,
   Login,
-  Books
- } from './index';
+  Books,
+  NewBook
+} from './index';
  import { getUserMe } from '../axios/Users';
 
 import '@fontsource/roboto/300.css';
@@ -85,6 +86,15 @@ import '@fontsource/roboto/700.css';
                message={message}
               />} />
               <Route path="/books" element={<Books
+                user={user}
+                isLoggedIn={isLoggedIn}
+                setUser={setUser}
+                setIsLoggedIn={setIsLoggedIn}
+                setError={setError}
+                setMessage={setMessage}
+                navigate={navigate}
+              />} />
+              <Route path="/new-book" element={<NewBook
                 user={user}
                 isLoggedIn={isLoggedIn}
                 setUser={setUser}
