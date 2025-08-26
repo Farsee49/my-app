@@ -6,9 +6,16 @@ import {
   Navbar,
   Home,
   Register,
-  Login
+  Login,
+  Books
  } from './index';
  import { getUserMe } from '../axios/Users';
+
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 
 
 
@@ -24,33 +31,7 @@ import {
 
                               console.log('App user state top:', user);
 
-                              // get weather data according to the location
-function getWeather(lat, long) {
-  const root = "https://fcc-weather-api.glitch.me/api/current?";
-  fetch(`${root}lat=${lat}&lon=${long}`, { method: "get" })
-    .then(resp => resp.json())
-    .then(data => {
-      updateDataToUI(data.name, data.weather, data.main.temp);
-    })
-    .catch(function(err) {
-      console.error(err);
-    });
-}
-
-      // get location
-function getLocation() {
-  console.log("Getting location...", navigator.geolocation);
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(position => {
-       getWeather(position.coords.latitude, position.coords.longitude);
-      
-    });
-  } else {
-    //loc.innerHTML = "Geolocation is not supported by this browser.";
-    console.log("Geolocation is not supported by this browser.");
-  }
-}
-
+     
 
       useEffect(() => {
         const fetchCurrentUser = async () => {
@@ -68,7 +49,6 @@ function getLocation() {
           }
         };
         fetchCurrentUser();
-        getLocation();
       }, []);
                         console.log('App user state bottom:', user);
       return (
@@ -103,6 +83,15 @@ function getLocation() {
                navigate={navigate}
                error={error}
                message={message}
+              />} />
+              <Route path="/books" element={<Books
+                user={user}
+                isLoggedIn={isLoggedIn}
+                setUser={setUser}
+                setIsLoggedIn={setIsLoggedIn}
+                setError={setError}
+                setMessage={setMessage}
+                navigate={navigate}
               />} />
             </Routes>
         </>

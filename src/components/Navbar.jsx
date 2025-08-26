@@ -28,6 +28,13 @@ export default function Navbar({ user, isLoggedIn, setUser, setIsLoggedIn, setEr
             My App
           </Typography>
           {isLoggedIn ? (
+            <>
+              <Button color="inherit" component={Link} to="/">
+                Home
+              </Button>
+              <Button color="inherit" component={Link} to="/books">
+                Books
+            </Button>
             <Logout
               setUser={setUser}
               setIsLoggedIn={setIsLoggedIn}
@@ -36,6 +43,7 @@ export default function Navbar({ user, isLoggedIn, setUser, setIsLoggedIn, setEr
               navigate={navigate}
               user={user}
             />
+            </>
           ) : (
             <>
             <Button color="inherit" component={Link} to="/login">
