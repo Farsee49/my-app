@@ -58,9 +58,22 @@ const getBookByUserId = async (userId) => {
   }
 };
 
+const deleteBook = async (id) => {
+  try {
+    const query = `
+      DELETE FROM books WHERE id = $1
+    `;
+    await pool.query(query, [id]);
+  } catch (error) {
+    console.error('Error deleting book:', error);
+    throw error;
+  }
+};
+
 module.exports = {
     createBook,
     getAllBooks,
     getBookById,
-    getBookByUserId
+    getBookByUserId,
+    deleteBook
 }

@@ -51,6 +51,28 @@ booksRouter.post('/', catchAsync(async (req, res, next) => {
   next();
 }));
 
-
+//Delete a book
+booksRouter.delete('/:bookId', catchAsync(async (req, res, next) => {
+  const { bookId } = req.params;
+  const book = await getBookById(bookId);
+  if (!book) {
+    return res.status(404).json({
+      message: 'Book not found',
+      success: false
+    });
+  }
+  if (req.session.user.id !== book.users_id) {
+    return res.status(403).json({
+      message: 'You are not authorized to delete this book',
+      error: 'Unauthorized',
+      success: false
+    });
+  }
+  await deleteBook(book.id);
+  res.status(204).json({
+    message: 'Book deleted successfully',
+    success: true
+  });
+}));
 
 module.exports = booksRouter;
