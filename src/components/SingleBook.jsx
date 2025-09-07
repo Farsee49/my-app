@@ -48,9 +48,11 @@ export default function SingleBook({
             <Typography variant="caption" color="text.secondary">
               {singleBook.genre}
             </Typography>
-            <Button sx={{ mt: 2, marginLeft: "16px" }} variant="contained" color="primary" onClick={() => navigate(`/update-book/${singleBook.id}`)} target="_blank" rel="noopener">
-              Update Book
-            </Button>
+           {singleBook.users_id === user.id ? (
+             <Button sx={{ mt: 2, marginLeft: "16px" }} variant="contained" color="primary" onClick={() => navigate(`/update-book/${singleBook.id}`)} target="_blank" rel="noopener">
+               Update Book
+             </Button>
+           ) : null}
           </CardContent>
         
         </Card>

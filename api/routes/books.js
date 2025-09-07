@@ -6,7 +6,8 @@ const {
   getAllBooks, 
   getBookById, 
   getBookByUserId,
-  updateBook
+  updateBook,
+  deleteBook
 } = require('../db/models/books');
 
 // Get all books
@@ -102,19 +103,20 @@ booksRouter.delete('/:bookId', catchAsync(async (req, res, next) => {
       message: 'Book not found',
       success: false
     });
-  }
-  if (req.session.user.id !== book.users_id) {
+  } else if (req.session.user.id !== book.users_id) {
     return res.status(403).json({
       message: 'You are not authorized to delete this book',
       error: 'Unauthorized',
       success: false
     });
+  } else {
+    await deleteBook(bookId);
+    return res.status(200).json({
+      message: 'Book deleted successfully',
+      success: true
+    });
   }
-  await deleteBook(book.id);
-  res.status(204).json({
-    message: 'Book deleted successfully',
-    success: true
-  });
+  next();
 }));
 
 module.exports = booksRouter;
