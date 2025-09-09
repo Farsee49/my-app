@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
     Box,
     Container,
@@ -10,13 +11,14 @@ import {
     CardActions,
     TextField
 } from '@mui/material';
+import { updateBookById } from '../axios/Books';
  
 
 
 
 export default function UpdateBook({ singleBook, navigate, user }) {
   console.log("singleBook in UpdateBook component:", singleBook, "user:", user);
-
+      const { bookId } = useParams();
       const [title, setTitle] = useState("");
       const [author, setAuthor] = useState("");
       const [genre, setGenre] = useState("");
@@ -24,9 +26,27 @@ export default function UpdateBook({ singleBook, navigate, user }) {
       const [imageUrl, setImageUrl] = useState("");
 
         const handleSubmit = async (e) => {
+          try {
             e.preventDefault();
+
+            const updatedBook = {
+              title,
+              author,
+              genre,
+              published_year : publishedYear,
+              image_url : imageUrl,
+              users_id: user.id
+            };
+
+            const response = await updateBookById(singleBook.id, updatedBook);
+            console.log("Updated book response:", response);
+            navigate('/books');
+
             // Implement the logic to update the book details here
             console.log("Update book details submitted");
+          } catch (error) {
+            console.error("Error updating book details:", error);
+          }
         };
   return (
         <>
@@ -44,7 +64,8 @@ export default function UpdateBook({ singleBook, navigate, user }) {
               type="text"
               label="Title"
               variant="outlined"
-              value={singleBook.title}
+              placeholder={singleBook.title}
+              // value={singleBook.title}
               onChange={(e) => setTitle(e.target.value)}
               required
             />
@@ -53,7 +74,8 @@ export default function UpdateBook({ singleBook, navigate, user }) {
               type="text"
               label="Author"
               variant="outlined"
-              value={singleBook.author}
+              placeholder={singleBook.author}
+              // value={singleBook.author}
               onChange={(e) => setAuthor(e.target.value)}
               required
             />
@@ -62,7 +84,8 @@ export default function UpdateBook({ singleBook, navigate, user }) {
               type="text"
               label="Genre"
               variant="outlined"
-              value={singleBook.genre}
+              placeholder={singleBook.genre}
+              // value={singleBook.genre}
               onChange={(e) => setGenre(e.target.value)}
               required
             />  
@@ -71,7 +94,8 @@ export default function UpdateBook({ singleBook, navigate, user }) {
               type="text"
               label="Published Year"
               variant="outlined"
-              value={singleBook.published_year}
+              // value={singleBook.published_year}
+              placeholder={singleBook.published_year}
               onChange={(e) => setPublishedYear(e.target.value)}
               required
             />
@@ -80,7 +104,7 @@ export default function UpdateBook({ singleBook, navigate, user }) {
               type="text"
               label="Image URL"
               variant="outlined"
-              value={singleBook.image_url}
+              placeholder={singleBook.image_url}
               onChange={(e) => setImageUrl(e.target.value)}
               required
             />

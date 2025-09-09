@@ -54,10 +54,16 @@ booksRouter.post('/', catchAsync(async (req, res, next) => {
 }));
 
 // Update a book
-booksRouter.put('/:bookId', catchAsync(async (req, res, next) => {
+booksRouter.put('/edit/:bookId', catchAsync(async (req, res, next) => {
   const { bookId } = req.params;
-  const { title, author, genre, published_year, image_url } = req.body;
+  const { title, author, genre, published_year, image_url, users_id } = req.body;
   const book = await getBookById(bookId);
+        if (!book) {
+          return res.status(404).json({
+            message: 'Book not found',
+            success: false
+          });
+        }
   console.log(book, "book in put route", req.session.user.id, "session id");
    if (!title || !author || !genre ) {
         return res.status(400).json({ 

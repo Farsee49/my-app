@@ -43,7 +43,7 @@ export const getBookById = async (bookId) => {
 //Update a book by ID
 export const updateBookById = async (bookId, updatedBook) => {
     try {
-        const response = await axios.put(`http://localhost:4646/api/books/${bookId}`, updatedBook, { withCredentials: true });
+        const response = await axios.put(`http://localhost:4646/api/books/edit/${bookId}`, updatedBook, { withCredentials: true });
         return response.data;
     } catch (error) {
         console.error(`Error updating book with ID ${bookId}:`, error);
