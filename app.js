@@ -11,8 +11,8 @@ const passport = require('passport');
 const chalk = require('chalk');
 const cors = require('cors');
 const morgan = require('morgan');
-const PORTAL = process.env.EXPPORT;
-require('./utils/passport-config');
+const PORTAL = process.env.EXPPORT || 4646;
+require('./utils/passport-config')(passport);
 const router = require('./api/index.js')
 const sessionStore = new pgSession({
     pool: pool, // Connection pool
@@ -35,30 +35,16 @@ const sessionMiddleware = session({
 });
 
 const corsOptions = {
-  origin: ['http://localhost:3000', "https://fcc-weather-api.glitch.me/api/current?"], // Adjust this to your frontend URL
+  origin: ['http://localhost:3000', "https://fcc-weather-api.glitch.me/api/current?"],
   credentials: true, // Enable cookies
-  methods: ['GET', 'POST', 'PUT','FETCH', 'DELETE'], // Allowed methods
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
   preflightContinue: false, // Pass the CORS preflight response to the next handler
-  optionsSuccessStatus: 204, // Some legacy browsers (IE11, various SmartTVs
-  //) choke on 204, so we use 200 instead
+  optionsSuccessStatus: 204
   
-
-
 };
 app.use(cors(corsOptions));
-app.use(session({
-  store: sessionStore,
-  secret: SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    httpOnly: true,      // prevents JavaScript access
-    secure: false,       // set to true in production with HTTPS
-    sameSite: 'lax',     // helps prevent CSRF
-    maxAge: 1000 * 60 * 60 // 1 hour
-  }
-}));
+app.use(sessionMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -68,8 +54,6 @@ app.use(morgan('dev'));
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 
 
 app.use('/api', router);

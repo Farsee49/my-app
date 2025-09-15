@@ -10,7 +10,8 @@ import {
   Books,
   NewBook,
   SingleBook,
-  UpdateBook
+  UpdateBook,
+  DeleteBook
 } from './index';
  import { getUserMe } from '../axios/Users';
 
@@ -133,6 +134,18 @@ import '@fontsource/roboto/700.css';
                 setSingleBook={setSingleBook}
                 isAuth={isAuth}
               />} />
+              <Route path="/delete-book/:id" element={<DeleteBook
+                user={user}
+                isLoggedIn={isLoggedIn}
+                setUser={setUser}
+                setIsLoggedIn={setIsLoggedIn}
+                setError={setError}
+                setMessage={setMessage}
+                navigate={navigate}
+                singleBook={singleBook}
+                setSingleBook={setSingleBook}
+                isAuth={isAuth}
+              />} />  
             </Routes>
         </>
       );

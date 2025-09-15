@@ -109,20 +109,24 @@ booksRouter.delete('/:bookId', catchAsync(async (req, res, next) => {
       message: 'Book not found',
       success: false
     });
-  } else if (req.session.user.id !== book.users_id) {
+  } 
+  if (req.session.user.id !== book.users_id) {
     return res.status(403).json({
       message: 'You are not authorized to delete this book',
       error: 'Unauthorized',
       success: false
     });
   } else {
-    await deleteBook(bookId);
-    return res.status(200).json({
+   const result = await deleteBook(bookId);
+   
+    return result, res.status(200).send({
       message: 'Book deleted successfully',
       success: true
     });
-  }
+  
   next();
+  }
+
 }));
 
 module.exports = booksRouter;

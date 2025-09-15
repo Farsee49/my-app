@@ -5,9 +5,9 @@ const connectionString = process.env.DBURL;
 
 const pool = new Pool({
   connectionString: connectionString,
-  ssl: {
+  ssl: process.env.NODE_ENV === 'production' ? {
     rejectUnauthorized: false,
-  }
+  } : false
 });
 
 module.exports = pool;

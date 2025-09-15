@@ -1,10 +1,6 @@
 import axios from 'axios';
 
 
-
-
-
-
 //Get all books
 export const getAllBooks = async () => {
     try {
@@ -53,6 +49,7 @@ export const updateBookById = async (bookId, updatedBook) => {
 
 //Delete a book by ID
 export const deleteBookById = async (bookId) => {
+    console.log("Deleting book with ID:", bookId);
     try {
         const response = await axios.delete(`http://localhost:4646/api/books/${bookId}`, { withCredentials: true });
         return response.data;

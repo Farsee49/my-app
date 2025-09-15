@@ -11,7 +11,7 @@ import {
     CardMedia,
     TextField
 } from '@mui/material';
-
+import { DeleteBook } from './index';
 
 export default function SingleBook({ 
   singleBook, 
@@ -39,7 +39,7 @@ export default function SingleBook({
             }}
             image={singleBook.image_url}
           />
-          <CardContent sx={{ flex: '1 0 auto', backgroundColor: '#386536ff' }}>
+          <CardContent sx={{ display: 'flex', flexDirection: 'column', flex: '1 0 auto', backgroundColor: '#386536ff' }}>
             <Typography  variant="h5">{singleBook.title}</Typography>
             <Typography variant="subtitle1">{singleBook.author}</Typography>
             <Typography variant="body2" color="text.secondary">
@@ -49,9 +49,13 @@ export default function SingleBook({
               {singleBook.genre}
             </Typography>
            {singleBook.users_id === user.id ? (
-             <Button sx={{ mt: 2, marginLeft: "16px" }} variant="contained" color="primary" onClick={() => navigate(`/update-book/${singleBook.id}`)} target="_blank" rel="noopener">
-               Update Book
-             </Button>
+             <><Button sx={{ mt: 2, marginLeft: "16px" }} variant="contained" color="primary" onClick={() => navigate(`/update-book/${singleBook.id}`)} target="_blank" rel="noopener">
+                Update Book
+              </Button>
+             <Button sx={{ mt: 2, marginLeft: "16px" }} variant="contained" color="error" onClick={() => navigate(`/delete-book/${singleBook.id}`)} target="_blank" rel="noopener">
+                Delete Book
+              </Button>
+          </>
            ) : null}
           </CardContent>
         
