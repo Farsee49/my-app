@@ -1,6 +1,7 @@
 const express = require('express');
 const booksRouter = express.Router();
 const catchAsync = require('../../utils/catchAsync');
+const { getUserById } = require('../db/models/users');
 const { 
   createBook, 
   getAllBooks, 
@@ -24,6 +25,34 @@ booksRouter.get('/', catchAsync(async (req, res, next) => {
     books: books,
     success: true
   });
+}));
+
+// Get books by user ID
+booksRouter.get('/user/:userId', catchAsync(async (req, res, next) => {
+  const { userId } = req.params;
+  const user = await getUserById(userId);
+  console.log(user, "user in books by user id route");
+  if (!user) {
+    return res.status(404).json({
+      message: 'User not found',
+      success: false
+    });
+  }
+
+  const books = await getBookByUserId(userId);
+  if (!books || books.length === 0) {
+    return res.status(404).json({
+      message: 'No books found for this user',
+      success: false
+    });
+  }
+  res.status(200).json({
+    message: 'Books retrieved successfully',
+    books: books,
+    success: true
+  });
+  console.log(books, "books by user id","session:", req.session.user);
+  next();
 }));
 
 // Create a new book

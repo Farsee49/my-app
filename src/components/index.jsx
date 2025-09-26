@@ -9,3 +9,4 @@ export { default as NewBook } from './NewBook';
 export { default as SingleBook } from './SingleBook';
 export { default as UpdateBook } from './UpdateBook';
 export { default as DeleteBook } from './DeleteBook';
+export { default as Quote } from './Quote';

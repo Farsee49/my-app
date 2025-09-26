@@ -53,80 +53,152 @@ export default function NewBook({
 
 
    return (
+       
         <>
-      <Typography style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '10vh' }}
-       variant="h4" component="h1" gutterBottom>
-        Add Book
-      </Typography>
-      <Box style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '20vh' }}
-          sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
-          noValidate
-          autoComplete="off"
-        >
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <form onSubmit={submitNewBook}>
-        <TextField
-          type="text"
-          label="Title"
-          variant="outlined"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <br />
-        <br />
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <TextField
-          type="text"
-          label="Author"
-          variant="outlined"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          required
-        />
-    
-      <br />
-      <br />
-       <TextField
-             type="text"
-             label="Genre"
-             variant="outlined"
-             value={genre}
-             onChange={(e) => setGenre(e.target.value)}
-             required
-          />
-          <br />
-          <br />
-       <TextField
-          type="integer"
-          label="Published Year"
-          variant="outlined"
-          value={publishedYear}
-          onChange={(e) => setPublishedYear(e.target.value)}
-          required
-        />
-      <br />
-      <br />
-      <TextField
-          type="text"
-          label="Image URL"
-          variant="outlined"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-          required
-        />
-      <br />
-      <br />
-      
-        
-      <Button  type="submit" variant="contained" color="primary" >
-        Add Book
-      </Button>
-      </div>
-        </form>
-      </div>
-     
-    </Box>
 
+      <Card sx={{ backgroundColor: 'rgb(63, 74, 78)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: 'auto' }}>
+              <Typography variant="h4" component="h1" gutterBottom>
+                  New Book
+              </Typography>
+        <Box component="form" 
+            noValidate 
+            autoComplete="off" 
+            onSubmit={submitNewBook} 
+            sx={{ mt: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <TextField
+              type="text"
+              label="Title"
+              variant="outlined"
+              //placeholder={singleBook.title}
+              // value={singleBook.title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+            <TextField
+            sx={{ mt: 2 }}
+              type="text"
+              label="Author"
+              variant="outlined"
+             // placeholder={singleBook.author}
+              // value={singleBook.author}
+              onChange={(e) => setAuthor(e.target.value)}
+              required
+            />
+            <TextField
+             sx={{ mt: 2 }}
+              type="text"
+              label="Genre"
+              variant="outlined"
+             // placeholder={singleBook.genre}
+              // value={singleBook.genre}
+              onChange={(e) => setGenre(e.target.value)}
+              required
+            />  
+            <TextField
+              sx={{ mt: 2 }}
+              type="text"
+              label="Published Year"
+              variant="outlined"
+              // value={singleBook.published_year}
+              //placeholder={singleBook.published_year}
+              onChange={(e) => setPublishedYear(e.target.value)}
+              required
+            />
+            <TextField
+              sx={{ mt: 2, mb: 2 }}
+              type="text"
+              label="Image URL"
+              variant="outlined"
+             // placeholder={singleBook.image_url}
+              onChange={(e) => setImageUrl(e.target.value)}
+              required
+            />
+
+            
+              <Button sx={{ mb: 5 }} type="submit" variant="contained" color="primary">
+                Add Book
+              </Button>
+            
+        </Box>
+    </Card>
   </>);
 }
+
+
+
+
+
+//  {/* <Typography style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '10vh' }}
+//        variant="h4" component="h1" gutterBottom>
+//         Add Book
+//       </Typography>
+//       <Box style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '20vh' }}
+//           sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
+//           noValidate
+//           autoComplete="off"
+//         >
+//       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+//         <form onSubmit={submitNewBook}>
+//         <TextField
+//           type="text"
+//           label="Title"
+//           variant="outlined"
+//           value={title}
+//           onChange={(e) => setTitle(e.target.value)}
+//           required
+//         />
+//         <br />
+//         <br />
+//       <div style={{ display: 'flex', justifyContent: 'center' }}>
+//         <TextField
+//           type="text"
+//           label="Author"
+//           variant="outlined"
+//           value={author}
+//           onChange={(e) => setAuthor(e.target.value)}
+//           required
+//         />
+    
+//       <br />
+//       <br />
+//        <TextField
+//              type="text"
+//              label="Genre"
+//              variant="outlined"
+//              value={genre}
+//              onChange={(e) => setGenre(e.target.value)}
+//              required
+//           />
+//           <br />
+//           <br />
+//        <TextField
+//           type="integer"
+//           label="Published Year"
+//           variant="outlined"
+//           value={publishedYear}
+//           onChange={(e) => setPublishedYear(e.target.value)}
+//           required
+//         />
+//       <br />
+//       <br />
+//       <TextField
+//           type="text"
+//           label="Image URL"
+//           variant="outlined"
+//           value={imageUrl}
+//           onChange={(e) => setImageUrl(e.target.value)}
+//           required
+//         />
+//       <br />
+//       <br />
+      
+        
+//       <Button  type="submit" variant="contained" color="primary" >
+//         Add Book
+//       </Button>
+//       </div>
+//         </form>
+//       </div>
+     
+//     </Box>
+

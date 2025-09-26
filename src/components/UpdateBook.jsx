@@ -51,7 +51,7 @@ export default function UpdateBook({ singleBook, navigate, user }) {
   return (
         <>
 
-      <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: 'auto' }}>
+      <Card sx={{ backgroundColor: 'rgb(63, 74, 78)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: 'auto' }}>
               <Typography variant="h4" component="h1" gutterBottom>
                   Update Book
               </Typography>

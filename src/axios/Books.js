@@ -12,6 +12,17 @@ export const getAllBooks = async () => {
     }
 };
 
+//Get books by user ID
+export const getBooksByUserId = async (userId) => {
+    try {
+        const response = await axios.get(`http://localhost:4646/api/books/user/${userId}`);
+        return response.data;
+    } catch (error) {
+        console.error(`Error fetching books for user ID ${userId}:`, error);
+        throw error;
+    }
+};
+
 
 //Create a new book
 export const createBook = async (newBook) => {
