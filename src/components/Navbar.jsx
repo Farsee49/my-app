@@ -38,6 +38,9 @@ export default function Navbar({ user, isLoggedIn, setUser, setIsLoggedIn, setEr
               <Button color="inherit" component={Link} to="/books">
                 Books
             </Button>
+            <Button color="inherit" component={Link} to="weather">
+                Weather
+            </Button>
             <Logout
               setUser={setUser}
               setIsLoggedIn={setIsLoggedIn}

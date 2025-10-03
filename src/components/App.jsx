@@ -11,7 +11,8 @@ import {
   NewBook,
   SingleBook,
   UpdateBook,
-  DeleteBook
+  DeleteBook,
+  Weather
 } from './index';
  import { getUserMe } from '../axios/Users';
 
@@ -145,6 +146,10 @@ import '@fontsource/roboto/700.css';
                 singleBook={singleBook}
                 setSingleBook={setSingleBook}
                 isAuth={isAuth}
+              />} />
+              <Route path="/weather" element={<Weather
+                user={user}
+                isLoggedIn={isLoggedIn} 
               />} />  
             </Routes>
         </>

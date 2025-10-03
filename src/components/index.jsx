@@ -10,3 +10,5 @@ export { default as SingleBook } from './SingleBook';
 export { default as UpdateBook } from './UpdateBook';
 export { default as DeleteBook } from './DeleteBook';
 export { default as Quote } from './Quote';
+export { default as Pumpkin } from './Pumpkin';
+export { default as Weather } from './Weather';
